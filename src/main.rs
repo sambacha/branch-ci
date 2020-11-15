@@ -112,7 +112,7 @@ mod tests {
     fn test_get_commit_log() {
         let access_token = env::var("GITHUB_STATS_TOKEN").expect("Token not found");
         let repo = Repository::open("/Users/kevj/projects/voyager").expect("cannot open git repo");
-        let r = get_commit_log(&access_token, repo, "origin/release/2.167.x", "origin/release/2.168.x", "THG-Voyager/voyager");
+        let r = get_commit_log(&access_token, repo, "origin/release/2.167.x", "origin/release/2.168.x", "${ORG}/${REPO}");
         assert!(r.is_ok());
     }
 
@@ -122,7 +122,7 @@ mod tests {
         let repo = Repository::open("/Users/kevj/projects/voyager").expect("cannot open git repo");
         let commit_id = Oid::from_str("77728b3066ce7b179acdfac776512f570fffdaae").unwrap();
         let commit = repo.find_commit(commit_id).unwrap();
-        let r = commit_to_formatted_output(commit, "THG-Voyager/voyager", &access_token);
+        let r = commit_to_formatted_output(commit, "${ORG}/${REPO}", &access_token);
         assert!(r.is_ok());
         assert_eq!("77728b3066ce7b179acdfac776512f570fffdaae,1522335500,4729,4132,user@youremail.com,VGR-8087 - Adding tests for verifying required products service is decremented (#4729)", r.unwrap())
     }
@@ -131,7 +131,7 @@ mod tests {
     fn test_fetch_github_info_for_commit() {
         let access_token = env::var("GITHUB_STATS_TOKEN").expect("Token not found");
         let pr_number = "4729";
-        let r = fetch_github_info_for_commit(1522335500, pr_number, "THG-Voyager/voyager", &access_token);
+        let r = fetch_github_info_for_commit(1522335500, pr_number, "${ORG}/${REPO}", &access_token);
         assert!(r.is_some());
     }
 
