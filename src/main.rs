@@ -124,7 +124,7 @@ mod tests {
         let commit = repo.find_commit(commit_id).unwrap();
         let r = commit_to_formatted_output(commit, "THG-Voyager/voyager", &access_token);
         assert!(r.is_ok());
-        assert_eq!("77728b3066ce7b179acdfac776512f570fffdaae,1522335500,4729,4132,zohaib.m.khan96@gmail.com,VGR-8087 - Adding tests for verifying required products service is decremented (#4729)", r.unwrap())
+        assert_eq!("77728b3066ce7b179acdfac776512f570fffdaae,1522335500,4729,4132,user@youremail.com,VGR-8087 - Adding tests for verifying required products service is decremented (#4729)", r.unwrap())
     }
 
     #[test]
